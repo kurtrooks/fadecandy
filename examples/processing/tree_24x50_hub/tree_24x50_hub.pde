@@ -1,12 +1,21 @@
+import processing.video.*;
+Movie mov;
+
 OPC opc;
 PImage dot;
 
 void setup()
 {
-  size(1024,1024);
-
-  dot = loadImage("dot.png");
-
+  size(1920,1080);
+  
+  mov = new Movie(this,"/home/kurt/Downloads/bbb_sunflower_1080p_60fps_normal.mp4");
+  mov.play();
+  
+  // Example of a static image
+  /*
+  dot = loadImage("dog.jpg");
+  */
+  
   // Connect to the local instance of fcserver. You can change this line to connect to another computer's fcserver
   opc = new OPC(this, "127.0.0.1", 7890);
   
@@ -22,11 +31,15 @@ void setup()
 
 void draw()
 {
-  background(1);
+ // background(0);
+  image(mov,0,0);
   
-  // Change the dot size as a function of time, to make it "throb"
-  float dotSize = height * 0.6 * (1.0 + 0.2 * sin(millis() * 0.01));
+ // float dotSize = (height/20.0)*(1.0*height/mouseY); 
   
   // Draw it centered at the mouse location
-  image(dot, mouseX - dotSize/2, mouseY - dotSize/2, dotSize, dotSize);
+ // image(dot, mouseX - dotSize/2, mouseY - dotSize/2, dotSize, dotSize);
+}
+
+void movieEvent(Movie m) {
+  m.read();
 }
