@@ -1,0 +1,5 @@
+processing-video didn't work out of the box, had to get a zip version from:
+https://github.com/processing/processing-video/releases
+
+add the unzipped library above to the ~/sketchbook/library/ folder and everything should work!
+
